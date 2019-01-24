@@ -1,25 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+
+import DeviceSwitcher from "./components/DeviceSwitcher";
+import Device from "./components/Device";
+
+const devices = {
+  iPhoneX: {
+    x: 375,
+    y: 812
+  },
+  pixel2: {
+    x: 411,
+    y: 731
+  },
+  iPhone5SE: {
+    x: 320,
+    y: 568
+  }
+};
 
 class App extends Component {
+  state = {
+    device: "iPhoneX"
+  };
+
+  setDevice = deviceName => {
+    this.setState({ device: deviceName });
+  };
+
   render() {
+    console.log(devices[this.state.device]);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <DeviceSwitcher setDevice={this.setDevice} />
+        <Device device={devices[this.state.device]} />
       </div>
     );
   }
