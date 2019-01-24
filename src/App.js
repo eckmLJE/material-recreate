@@ -4,21 +4,6 @@ import "./App.css";
 import DeviceSwitcher from "./components/DeviceSwitcher";
 import Device from "./components/Device";
 
-const devices = {
-  iPhoneX: {
-    x: 375,
-    y: 812
-  },
-  pixel2: {
-    x: 411,
-    y: 731
-  },
-  iPhone5SE: {
-    x: 320,
-    y: 568
-  }
-};
-
 class App extends Component {
   state = {
     device: "iPhoneX"
@@ -29,11 +14,13 @@ class App extends Component {
   };
 
   render() {
-    console.log(devices[this.state.device]);
     return (
       <div className="App">
-        <DeviceSwitcher setDevice={this.setDevice} />
-        <Device device={devices[this.state.device]} />
+        <DeviceSwitcher
+          setDevice={this.setDevice}
+          deviceName={this.state.device}
+        />
+        <Device deviceName={this.state.device} />
       </div>
     );
   }
